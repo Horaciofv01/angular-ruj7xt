@@ -14,6 +14,6 @@ if ( window.location.hostname.toLowerCase() === 'qpersonalmap' )
 
 //enableProdMode();
 
-//Cesium.buildModuleUrl.setBaseUrl( '/assets/cesium/' );
-//platformBrowserDynamic().bootstrapModule( AppModule )
-  //.catch( err => console.error( err ) );
+Cesium.buildModuleUrl.setBaseUrl( '/assets/cesium/' );
+platformBrowserDynamic().bootstrapModule( AppModule )
+  .catch( err => console.error( err ) );
