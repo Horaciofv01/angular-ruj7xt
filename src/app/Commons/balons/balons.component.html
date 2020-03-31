@@ -1,0 +1,133 @@
+<table style="margin: 0px auto; border-spacing: 0px; color: black" cellpadding="0" cellspacing="0">
+    <tbody>
+        <tr style="vertical-align: middle; text-align: center">
+            <td style="width: 16px">
+                <div class="middleSilverLine">
+                </div>
+            </td>
+            <td [routerLink]="[ '/balances/index']" style="width: 45px">
+                <div id="rtkSequence1" class="circleV" style="cursor: pointer;"></div>
+            </td>
+            <td style="width: 16px">
+                <div class="middleSilverLine">
+                </div>
+            </td>
+            <td style="width: 16px">
+                <div class="middleSilverLine">
+                </div>
+            </td>
+            <td [routerLink]="[ '/balances/selector/0']" style="width: 45px">
+                <div id="rtkSequence2" class="circleSequence" style="cursor: pointer;">2</div>
+            </td>
+            <td style="width: 16px">
+                <div class="middleSilverLine">
+                </div>
+            </td>
+            <td style="width: 16px">
+                <div class="middleSilverLine">
+                </div>
+            </td>
+            <td style="width: 45px">
+                <div id="rtkSequence3" class="circleSequence" style="cursor: pointer;">3</div>
+            </td>
+            <td style="width: 16px">
+                <div class="middleSilverLine">
+                </div>
+            </td>
+            <td style="width: 16px">
+                <div class="middleSilverLine">
+                </div>
+            </td>
+            <td style="position: relative; width: 45px">
+                <img id="FilesErrorShow" onclick="location.href='/pages/ViewValidity.aspx?ViewMap=True'"
+                    style="position: absolute; top: -5px; left: -5px; display: none; cursor: pointer"
+                    src="../Pictures/close.png">
+
+                <div id="rtkSequence4" class="circleSequence" style="cursor: pointer;">4</div>
+            </td>
+            <td style="width: 16px">
+                <div class="middleSilverLine">
+                </div>
+            </td>
+            <td style="width: 16px">
+                <div class="middleSilverLine">
+                </div>
+            </td>
+            <td style="position: relative; width: 45px">
+                <img id="LinesErrorShow" onclick="location.href='/pages/lines.aspx?ViewMap=True'"
+                    style="position: absolute; top: -5px; left: -5px; display: none; cursor: pointer"
+                    src="../Pictures/close.png">
+
+                <div id="rtkSequence5" class="circleSequence" style="cursor: pointer;">5</div>
+            </td>
+            <td style="width: 16px">
+                <div class="middleSilverLine">
+                </div>
+            </td>
+            <td style="width: 16px">
+                <div class="middleSilverLine">
+                </div>
+            </td>
+            <td style="width: 45px">
+                <div id="rtkSequence7" class="circleSequence" style="cursor: pointer;">6</div>
+            </td>
+            <td style="width: 16px">
+                <div class="middleSilverLine">
+                </div>
+            </td>
+            <td style="width: 16px">
+                <div class="middleSilverLine">
+                </div>
+            </td>
+            <td style="position: relative; width: 45px">
+                <img id="LoopsErrorShow" onclick="location.href='/pages/loops.aspx?ViewMap=True'"
+                    style="position: absolute; top: -5px; left: -5px; display: none; cursor: pointer"
+                    src="../Pictures/close.png">
+                <div id="rtkSequence6" class="circleSequence" style="cursor: pointer;">7</div>
+            </td>
+            <td style="width: 16px">
+                <div class="middleSilverLine">
+                </div>
+            </td>
+            <td style="width: 16px">
+                <div class="middleSilverLine">
+                </div>
+            </td>
+            <td style="width: 45px">
+                <div id="rtkSequence8" class="circleSequence" style="cursor: pointer;">8</div>
+            </td>
+            <td style="width: 16px">
+                <div class="middleSilverLine">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td [routerLink]="[ '/balances/index']" colspan="3" style="text-align: center; font-size: 14px">
+                טעינת קבצים
+            </td>
+            <td [routerLink]="[ '/balances/selector/0']" colspan="3" style="text-align: center; font-size: 14px">
+                בחירת אובייקים
+            </td>
+            <td colspan="3" style="text-align: center; font-size: 14px">
+                ניתוח אובייקים
+            </td>
+            <td colspan="3" style="text-align: center; font-size: 14px">
+                שמירה למסד נתונים
+            </td>
+            <td colspan="3" style="text-align: center; font-size: 14px">
+                <span>קווי מדידה:</span> <span style="font-weight: bold" id="LineNumbers_Div"></span>
+            </td>
+            <td colspan="3" style="text-align: center; font-size: 14px">
+                תיקון גרבימטרי
+            </td>
+            <td colspan="3" style="text-align: center; font-size: 14px">
+                תיאום לולאה \
+                <br>
+                רשת: <span style="font-weight: bold" id="LoopsNumbers_Div"></span>
+            </td>
+            <td colspan="3" style="text-align: center; font-size: 14px">
+                תיקון גרבימטרי
+            </td>
+        </tr>
+    </tbody>
+</table>

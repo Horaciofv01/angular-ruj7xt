@@ -1,0 +1,33 @@
+
+.circleV {
+  display: inline-block;
+  width: 100%;
+  border-radius: 32px;
+  height: 45px;
+  border: solid 4px #5CB85C;
+  background-color: #2E9745;
+  line-height: 46px;
+  text-align: center;
+  font-size: 28px;
+  background-image: url(../../../assets/images/v.png);
+}
+.circleSequence {
+  display: inline-block;
+  width: 100%;
+  border-radius: 32px;
+  height: 45px;
+  background-color: #FFFFFF;
+  border: solid 4px silver;
+  line-height: 46px;
+  text-align: center;
+  font-size: 28px;
+  color: silver;
+}
+
+.middleSilverLine {
+  height: 4px;
+  background-color: silver;
+  width: 100%;
+  display: block;
+  border: solid 0px silver;
+}

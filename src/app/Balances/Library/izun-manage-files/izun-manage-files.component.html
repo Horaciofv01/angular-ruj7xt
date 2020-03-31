@@ -1,0 +1,219 @@
+<div style="margin: 0px auto; text-align: center; max-width: 650px">
+
+
+    <div (click)="ClearAll()" id="RunMVC_7" class="mButtonGlificon"
+        style="background: #D9534F;display: inline-block;width:100px">
+        <div style="width:100px">
+            <div>
+                <img src="../../../../assets/images//WhiteIcons/delete-xl.png" height="24px">
+            </div>
+            <div>
+                נקה</div>
+        </div>
+    </div>
+
+
+    <div id="RunMVC_6" class="mButtonGlificon" style="background-color: #428BCA" (click)="refreshMap()">
+        <div>
+            <div>
+                <img src="../../../../assets/images/geography-24.png" height="24px">
+            </div>
+            <div>
+                עדכן מפה
+            </div>
+        </div>
+    </div>
+
+
+    <form action="/Calculation/IzunGeometry" enctype="multipart/form-data" id="DoCalculationForm_uplIndex" method="post"
+        style="display:inline-block">
+        <div (change)=" mUploadFiles ()" id="mUpload_1" class="mButtonGlificon" style="background-color: #5CB85C;
+        position: relative; cursor: pointer">
+            <input type="file" name="file" accept=".raw,.rez,.dat" multiple="" style="display: block;
+            position: absolute; top: 0px; opacity: 0; right: 0px; width: 145px; height: 45px;
+            cursor: pointer">
+            <div>
+                <img src="../../../../assets/images//WhiteIcons/plus-5-xl.png" height="24px">
+                <div>
+                    הוספת קבצים</div>
+            </div>
+        </div>
+
+
+
+    </form>
+
+
+
+
+
+
+
+
+
+
+    <div id="viewRank" style="display:inline-block">
+        <div class="mTableMiddle">
+            <div>
+                <div>
+                    <b style="font-size:13pt">בחר דרגה</b>
+                </div>
+                <div>&nbsp;</div>
+                <div>
+                    <select id="select_rank" onchange="indexBut.ChnageSelect_rank(this)"
+                        style="width: 105px; height: 42px;font-size:14pt;background-color:#d9eaf2" class="introText">
+
+                        <option selected="" value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div style="display:block;height: 30px"></div>
+
+
+<div id="UploadsDiv" style="margin: 0px auto; text-align: center; max-width: 650px">
+    <div (change)="mUploadFiles()" id="mUpload_0">
+        <div style="position:absolute;text-align:right;width:400px;display:block;overflow:auto">
+            <div style="display:block;padding:4px">גרור קובץ \ קבצים לכאן.</div>
+            <ul style="list-style-type:square">
+                <li>קבצים נתמכים לבקרה RAW , DAT , REZ </li>
+                <li>קובץ קואורדינטות -נקודות לתצוגה CSV</li>
+                <li>קובץ תיקון גרבימטרי CSV</li>
+            </ul>
+        </div>
+        <div class="mTable"
+            style="border: solid 1px silver; margin: 0px;width:100%;background-color: #dfd6df;text-align:right;width:100%;cursor:pointer">
+            <form id="mUploadForm" action="{{mconfig.mUrl}}/api/UploadFileManage/mUploadAndGetFiles"
+                target="mIframeNovisible" enctype="multipart/form-data" method="post"
+                style="display:inline-block;margin :0px;padding: 0px;width:100%">
+                <input class="mUpload" id="mUploadIzun" accept=".raw,.rez,.dat,.csv,.asc" name="file" type="file"
+                    multiple="" style="height:110px;display:block;opacity:0;width:100%;cursor:pointer"></form>
+        </div>
+    </div>
+</div>
+<!--iFrame to avoid the redirection-->
+<iframe name="mIframeNovisible" id="mIframeNovisible_id" style="display: none" width="0" height="0"></iframe>
+
+<div style="display: block;height: 30px"></div>
+
+<div id="ManageUploadsFilesContainer">
+    <div class="tableBorder" style="margin: 0px auto; max-width: 650px; text-align: right" id="Div1">
+
+        <div class="mTableRows_Rose" style="width: 100%" id="ManageUploadsFiles_Coordinates">
+            <div style="background-color: #dfd6df">
+                <div style="width: 30px;cursor:pointer">
+                    <img src="../assets/images/info1.png">
+                </div>
+                <div>קובץ קואורדינטות -נקודות לתצוגה CSV </div>
+            </div>
+            <div *ngFor="let item of mResults.mCsvPointDatas" style="cursor:pointer">
+                <div style="width: 35px">
+                    <div (click)="DeleteFile(3,item)"
+                        style="background-color:#D9534F;padding:6px;border-radius:6px;width:17px;cursor:pointer">
+                        <img src="../assets/images/WhiteIcons/delete-xl.png" height="20px"> </div>
+                </div>
+                <div class="mLink" (click)="LoadCSVStored(item)">{{item}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="tableBorder" style="margin: 0px auto; max-width: 650px; text-align: right" id="Div3">
+        <div class="mTableRows_Rose" style="width: 100%" id="ManageUploadsFiles_Gravimetry">
+            <div style="background-color: #dfd6df">
+                <div style="width: 30px"></div>
+                <div>קובץ תיקון גרבימטרי CSV</div>
+            </div>
+            <div *ngFor="let item of mResults.mCsvGravimetria" style="cursor:pointer">
+                <div style="width: 35px">
+                    <div (click)="DeleteFile(2,item)"
+                        style="background-color:#D9534F;padding:6px;border-radius:6px;width:17px;cursor:pointer">
+                        <img src="../assets/images/WhiteIcons/delete-xl.png" height="20px"> </div>
+                </div>
+                <div>{{item}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="tableBorder" style="margin: 0px auto; max-width: 650px; text-align: right" id="Div2">
+        <div class="mTableRows_Rose" style="width: 100%" id="ManageUploadsFiles_ASC_Gravimetry">
+            <div style="background-color: #dfd6df">
+                <div style="width: 30px"></div>
+                <div>קובץ תיקון גרבימטרי ASC</div>
+            </div>
+            <div *ngFor="let item of mResults.mASC" style="cursor:pointer">
+                <div style="width: 35px">
+                    <div (click)="DeleteFile(4,item)"
+                        style="background-color:#D9534F;padding:6px;border-radius:6px;width:17px;cursor:pointer">
+                        <img src="../assets/images/WhiteIcons/delete-xl.png" height="20px"> </div>
+                </div>
+                <div>{{item}}</div>
+            </div>
+
+
+        </div>
+        <!---
+1: REZ RAW DAT; 2 : CSV Gravimetria ; 3 : CSV pointdatas; 4 :ASC
+---->
+    </div>
+    <div class="tableBorder" style="margin: 0px auto; max-width: 650px; text-align: right">
+        <div class="mTableRows_Rose" style="width: 100%" id="ManageUploadsFiles">
+            <div style="background-color: #dfd6df">
+                <div style="width: 30px"></div>
+                <div>קבצים נתמכים לבקרה RAW , DAT , REZ </div>
+            </div>
+            <div *ngFor="let item of mResults.mRezDatRaw" style="cursor:pointer">
+                <div style="width: 35px">
+                    <div (click)="DeleteFile(1,item)"
+                        style="background-color:#D9534F;padding:6px;border-radius:6px;width:17px;cursor:pointer">
+                        <img src="../assets/images/WhiteIcons/delete-xl.png" height="20px"> </div>
+                </div>
+                <div>{{item}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="height:30px;display:block"></div>
+<div style="display: block;max-width: 650px;text-align :right;margin:0px auto">
+    <div [hidden]="!showCsvButton">
+        <b style="font-size: 13pt">הורדת CSV</b>
+        <div style="display: block;height: 20px"></div>
+        <div id="RunMVC_6" class="mButtonGlificon" (click)="LoadCSVGravimetria()" style="background-color: #57b55d">
+            <div>
+                <div>
+                    <!---<img src="../../../../assets/images/excell1.PNG">-->
+                    <img src="../../../../assets/images//WhiteIcons/data-transfer-download-xl.png" height="20px">
+                </div>
+                <div style="height: 40px">
+                    קואורדינטות + ג&quot;יגל
+                </div>
+            </div>
+        </div>
+        <div style="display: inline-block">
+            <div style="margin-left: 15px" [hidden]="!showCsvGravTimer">
+                <img style="display: inline-block" src="../../../../assets/images/timer-3.gif" height="60px">
+            </div>
+        </div>
+        <div id="RunMVC_6" [hidden]="showCsvButton" class="mButtonGlificon" style="background-color: #57b55d"
+            onclick="RunMVC.mRunForm(6)">
+            <div>
+                <div>
+                    <!---<img src="../../../../assets/images/excell1.PNG">-->
+                    <img src="../../../../assets/images//WhiteIcons/data-transfer-download-xl.png" height="20px">
+                </div>
+                <div style="height: 40px">
+                    קואורדינטות
+                </div>
+            </div>
+        </div>
+        <div style="display: inline-block">
+            <div [hidden]="!showCsvCoordTimer" style="margin-left: 15px">
+                <img style="display: inline-block" src="../../../../assets/images/timer-3.gif" height="60px">
+            </div>
+        </div>
+    </div>

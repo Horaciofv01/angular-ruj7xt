@@ -1,0 +1,229 @@
+html, body, #cesiumContainer { width: 100%; height: 100%; margin: 0; padding: 0; }
+
+body { font-family: Arial; font-size: 12pt; text-align: center; }
+
+.mTableTop { display: inline-table; }
+	.mTableTop > div { display: table-row; vertical-align: top; }
+		.mTableTop > div > div { display: table-cell; vertical-align: top; }
+
+.mTableMiddle { display: inline-table; }
+	.mTableMiddle > div { display: table-row; vertical-align: middle; }
+		.mTableMiddle > div > div { display: table-cell; vertical-align: middle; }
+
+
+.mTableBottom { display: inline-table; }
+	.mTableBottom > div { display: table-row; vertical-align: bottom; }
+		.mTableBottom > div > div { display: table-cell; vertical-align: bottom }
+
+.mTabsGrey {cursor: pointer;  width:200px; border-top-left-radius: 10px; border-top-right-radius: 10px; text-align: center; display: inline-block;border:solid 1px #d2d2e2; border-bottom: solid 1px #e8e8ff; height: 40px; background-color:#d7e5f1; line-height: 40px;color:#5b5b9c;font-weight: bold;font-size: 14pt }
+
+
+
+input[type="radio"] { cursor: pointer; transform: scale(2); }
+
+
+
+.IzunButtonMenu { width: 190px; height: 120px; text-align: center; top: 100px; font-family: tahoma; font-size: 12pt; font-weight: bold; color: navy; cursor: pointer; line-height: 120px; display: inline-block; margin-left: 20px; margin-bottom: 20px; }
+
+.IzunOrange { background-color: #F0AD4E; }
+
+.IzunYellow { background-color: #FFFF99; }
+
+.IzunGreen { background-color: #5CB85C; }
+
+.IzunBlue { background-color: #428BCA; }
+
+.mButtonGlificon { margin-left: 10px; background-color: #D9534F; padding: 10px; width: 125px; border-radius: 7px; display: inline-block; cursor: pointer; }
+	.mButtonGlificon div { display: table; }
+	.mButtonGlificon div div { display: table-cell; vertical-align: middle; width: 100px; text-align: center; font-weight: bold; color: white; }
+	.mButtonGlificon div div:nth-child(1) { padding-right: 5px; width: 21px; }
+
+
+.introText { padding: 5px; border-radius: 5px; border: solid 1px silver; color: #131212; font-size: 15pt; }
+
+
+.tableBorder { border: solid 1px silver; border-radius: 10px; padding: 5px; background-color: White; width: auto; }
+
+
+.mTableRows { display: table; border: solid 1px silver; background-color: White; border-left: solid 0px silver; }
+	.mTableRows > div { display: table-row; vertical-align: middle; border-bottom: solid 1px silver; }
+		.mTableRows > div:nth-child(2n + 1) { background-color: #dddddd; border: solid 4px green; }
+		.mTableRows > div:nth-child(1) { background-color: #C0D2F0; color: black; height: 30px; }
+		.mTableRows > div > div { display: table-cell; vertical-align: middle; padding: 5px; border-left: solid 1px silver; }
+
+
+.mButtonNoColor { width: 160px; height: 40px; display: inline-block; line-height: 40px; text-align: center; cursor: pointer; border-radius: 7px; color: white; font-weight: bold; }
+
+.mLink { color: blue; cursor: pointer; text-decoration: underline; }
+
+
+
+.GridSilverWhite { margin: 0px auto; padding: 4px; border: solid 1px silver; border-radius: 4px; }
+	.GridSilverWhite > div { width: 100%; display: table; background-color: White; border-right: solid 1px silver; direction: ltr; border-bottom: solid 1px rgb(230, 230, 230); }
+		.GridSilverWhite > div > div { display: table-row; width: 100%; }
+			.GridSilverWhite > div > div:nth-child(2n + 1) { background-color: rgb(235, 235, 235); }
+			.GridSilverWhite > div > div > div { display: table-cell; border-left: solid 1px silver; height: 40px; vertical-align: middle; text-align: right; padding-right: 5px; border-bottom: solid 1px silver}
+			.GridSilverWhite > div > div:nth-child(1) { background-color: rgb(126, 126, 126); color: white; height: 50px; vertical-align: middle; font-weight: bold; }
+				.GridSilverWhite > div > div:nth-child(1) > div { color: WHITE; font-size: 13pt; }
+
+
+
+
+.GridBlueWhite { margin: 0px auto; padding: 4px; border: solid 1px silver; border-radius: 4px; }
+	.GridBlueWhite > div { width: 100%; display: table; background-color: White; border-right: solid 1px silver; direction: ltr; border-bottom: solid 1px rgb(230, 230, 230); }
+		.GridBlueWhite > div > div { display: table-row; width: 100%; }
+			.GridBlueWhite > div > div:nth-child(2n + 1) { background-color: rgb(215, 229, 241); }
+			.GridBlueWhite > div > div > div { display: table-cell; border-left: solid 1px silver; height: 40px; vertical-align: middle; text-align: center; color: navy; border-bottom: solid 1px silver}
+			.GridBlueWhite > div > div:nth-child(1) { background-color: #3F8BCA; color: white; height: 50px; vertical-align: middle; font-weight: bold; }
+				.GridBlueWhite > div > div:nth-child(1) > div { color: white; font-size: 13pt; }
+
+				.GridLeftRight > div > div > div {text-align: right ;padding-right: 5px;font-weight: bold}
+
+
+.GridRedWhite { margin: 0px auto; padding: 4px; border: solid 1px silver; border-radius: 4px; }
+	.GridRedWhite > div { width: 100%; display: table; background-color: White; border-right: solid 1px silver; direction: ltr; border-bottom: solid 1px rgb(230, 230, 230); }
+		.GridRedWhite > div > div { display: table-row; width: 100%; }
+			.GridRedWhite > div > div:nth-child(2n + 1) { background-color: #f3e9e8; }
+			.GridRedWhite > div > div > div { display: table-cell; border-left: solid 1px silver; height: 40px; vertical-align: middle; text-align: center; color: navy; border-bottom: solid 1px silver}
+			.GridRedWhite > div > div:nth-child(1) { background-color: #d9534f; color: white; height: 50px; vertical-align: middle; font-weight: bold; }
+				.GridRedWhite > div > div:nth-child(1) > div { color: white; font-size: 13pt; }
+
+
+
+.GridOrangeWhite { margin: 0px auto; padding: 4px; border: solid 1px silver; border-radius: 4px; }
+	.GridOrangeWhite > div { width: 100%; display: table; background-color: White; border-right: solid 1px silver; direction: ltr; border-bottom: solid 1px rgb(230, 230, 230); }
+		.GridOrangeWhite > div > div { display: table-row; width: 100%; }
+			.GridOrangeWhite > div > div:nth-child(2n + 1) { background-color: #f0e0cb; }
+			.GridOrangeWhite > div > div > div { display: table-cell; border-left: solid 1px silver; height: 40px; vertical-align: middle; text-align: center; color: navy; border-bottom: solid 1px silver}
+			.GridOrangeWhite > div > div:nth-child(1) { background-color: #f0ad4e; color: white; height: 50px; vertical-align: middle; font-weight: bold; }
+				.GridOrangeWhite > div > div:nth-child(1) > div { color: white; font-size: 13pt; }
+
+
+.GridGreenWhite { margin: 0px auto; padding: 4px; border: solid 1px silver; border-radius: 4px; }
+	.GridGreenWhite > div { width: 100%; display: table; background-color: White; border-right: solid 1px silver; direction: ltr; border-bottom: solid 1px rgb(230, 230, 230); }
+		.GridGreenWhite > div > div { display: table-row; width: 100%; }
+			.GridGreenWhite > div > div:nth-child(2n + 1) { background-color: #c7ddc7; }
+			.GridGreenWhite > div > div > div {border-bottom: solid 1px silver; display: table-cell; border-left: solid 1px silver; height: 40px; vertical-align: middle; text-align: center; color: navy; }
+			.GridGreenWhite > div > div:nth-child(1) { background-color: #5cb85c; color: white; height: 50px; vertical-align: middle; font-weight: bold; }
+				.GridGreenWhite > div > div:nth-child(1) > div { color: white; font-size: 13pt; }
+
+
+
+				.GridSagolWhite { margin: 0px auto; padding: 4px; border: solid 1px silver; border-radius: 4px; }
+	.GridSagolWhite > div { width: 100%; display: table; background-color: White; border-right: solid 1px silver; direction: ltr; border-bottom: solid 1px rgb(230, 230, 230); }
+		.GridSagolWhite > div > div { display: table-row; width: 100%; }
+			.GridSagolWhite > div > div:nth-child(2n + 1) { background-color:#d7d7ec }
+			.GridSagolWhite > div > div > div { font-weight: bold;text-align: left;  border-bottom: solid 1px silver; display: table-cell; border-left: solid 1px silver; height: 40px; vertical-align: middle; text-align: center; color: navy; }
+			.GridSagolWhite > div > div:nth-child(1) { background-color: #9292c1; color: white; height: 50px; vertical-align: middle; font-weight: bold; }
+				.GridSagolWhite > div > div:nth-child(1) > div { color: white; font-size: 13pt; }
+
+
+
+
+.GreedPurpleWhite { margin: 0px auto; padding: 4px; border: solid 1px silver; border-radius: 4px; }
+	.GreedPurpleWhite > div { width: 100%; display: table; background-color: White; border-right: solid 1px silver; direction: ltr; border-bottom: solid 1px rgb(230, 230, 230); }
+		.GreedPurpleWhite > div > div { display: table-row; width: 100%; }
+			.GreedPurpleWhite > div > div:nth-child(2n + 1) { background-color:#eed8e9; }
+			.GreedPurpleWhite > div > div > div {border-bottom: solid 1px silver; display: table-cell; border-left: solid 1px silver; height: 40px; vertical-align: middle; text-align: center; color: navy; }
+			.GreedPurpleWhite > div > div:nth-child(1) { background-color:#c74fad; color: white; height: 50px; vertical-align: middle; font-weight: bold; }
+				.GreedPurpleWhite > div > div:nth-child(1) > div { color: white; font-size: 13pt; }
+
+
+
+
+.mTableRows_Rose { display: table; border: solid 1px silver; background-color: White; border-left: solid 0px silver; }
+	.mTableRows_Rose > div { display: table-row; vertical-align: middle; border-bottom: solid 1px silver; }
+		.mTableRows_Rose > div:nth-child(2n + 1) { background-color: #f5eef5; border: solid 4px green; }
+		.mTableRows_Rose > div:nth-child(1) { background-color: #dfd6df; color: black; height: 30px; font-weight: bold; line-height: 30px; }
+		.mTableRows_Rose > div > div { display: table-cell; vertical-align: middle; padding: 5px; border-left: solid 1px silver;border-bottom: solid 1px silver }
+
+
+
+
+
+.rtkTabs01 { display: table; margin: 0px auto; }
+	.rtkTabs01 > div { display: table-row; vertical-align: bottom; height: 65px; }
+		.rtkTabs01 > div > div { display: table-cell; vertical-align: bottom; }
+			.rtkTabs01 > div > div > div { color: white; cursor: pointer; display: table-cell; width: 270px; text-align: center; height: 53px; line-height: 53px; font-weight: bold; background-color: red; border-top-left-radius: 8px; border-top-right-radius: 8px; }
+
+
+.rtkTabs02 { display: table; margin: 0px auto; }
+	.rtkTabs02 > div { display: table-row; vertical-align: bottom; height: 65px; }
+		.rtkTabs02 > div > div { display: table-cell; vertical-align: bottom; }
+			.rtkTabs02 > div > div > div { color: white; cursor: pointer; display: table-cell; width: 200px; text-align: center; height: 53px; line-height: 53px; font-weight: bold; background-color: red; border-top-left-radius: 8px; border-top-right-radius: 8px; }
+
+
+
+
+
+.yellowRow { background-color: yellow; }
+; .firstRowYellow > div > div:nth-child(2) > div { background-color: yellow; }
+
+.mLinkMessageBox { color: rgb(100, 100, 192); cursor: pointer; text-decoration: underline; font-size: 16pt; margin-right: 10px; }
+
+
+
+.mSelectCSS { cursor: pointer; font-size: 14pt; padding: 10px; border-radius: 5px; border: solid 1px silver; width: 150px; background-color: rgb(202, 221, 204); }
+	.mSelectCSS > option { background-color: #FfFfFf; cursor: pointer; padding: 5px; cursor: pointer; height: 20px; }
+		.mSelectCSS > option:nth-child(2n + 1) { background-color: rgb(202, 221, 204); }
+
+
+.greenButton { width: 60px; height: 26px; display: block; border-radius: 13px; position: relative; border: solid 1px #C0C0C0; /*box-shadow: 0px 0px 6px 1px silver;*/ cursor: pointer; }
+	.greenButton div { width: 24px; height: 24px; background-color: #ffffff; position: absolute; left: 1px; border-radius: 12px; border: solid 1px white; color: white; box-shadow: 0px 0px 6px 1px silver; }
+
+
+
+.spaces10 { margin: 0px; padding: 0px; width: 95px; display: inline-table; }
+	.spaces10 div { width: 100%; display: table-row; vertical-align: bottom; }
+		.spaces10 div div { display: table-cell; text-align: center; font-weight: bold; }
+			.spaces10 div div div { width: 10px; display: inline-block; text-align: center; }
+			.spaces10 div div:nth-child(1) { font-weight: bold; }
+
+
+			  .divZoomMap { margin: 0px auto; border-radius: 5px; background-color: #f8f8f8; width: 32px; height: 28px; background-image: url('../images/zoom.PNG'); cursor: pointer; background-repeat: no-repeat; border: solid 2px silver; }
+    .divSelectInMap {margin: 0px auto;  border-radius: 5px; background-color: #f8f8f8; width: 32px; height: 28px; background-image: url('../images/select.PNG'); cursor: pointer; background-repeat: no-repeat; border: solid 2px silver; }
+    .divClearSelection {margin: 0px auto;  border-radius: 5px; background-color: #f8f8f8; width: 32px; height: 28px; background-image: url('../images/x_03.png'); cursor: pointer; background-repeat: no-repeat; border: solid 2px silver; }
+      .divViewTable {margin: 0px auto;  border-radius: 5px; background-color: #f8f8f8; width: 32px; height: 28px;  background-image: url('../images/viewTable.png'); cursor: pointer; background-repeat: no-repeat; border: solid 2px silver; }
+       .divViewFar {margin: 0px auto;  border-radius: 5px; background-color: #f8f8f8; width: 32px; height: 28px; background-image: url('../images/viewFar1.png'); cursor: pointer; background-repeat: no-repeat; border: solid 2px silver; }
+    .divRefresh {margin: 0px auto;  border-radius: 5px; background-color: #f8f8f8; width: 32px; height: 28px; background-image: url('../images/Refresh_24.png'); cursor: pointer; background-repeat: no-repeat; border: solid 2px silver; }
+		
+	
+
+
+    .divSelectLine { border-top-left-radius: 5px; border-bottom-left-radius: 5px; background-color: #ffffff; width: 32px; height: 28px; display: inline-block; background-image: url('../images/selectline.png'); cursor: pointer; background-repeat: no-repeat; border: solid 2px silver; }
+    .divSelectPoint { border-top-right-radius: 5px; border-bottom-right-radius: 5px; background-color: #ffffff; width: 32px; height: 28px; display: inline-block; background-image: url('../images/selectpoint.png'); cursor: pointer; background-repeat: no-repeat; border: solid 2px silver; }
+        
+    .ToolTipDiv > div{display:none}
+    .ToolTipDiv:hover > div{display:block}
+
+
+    .square1 { background-color: #22ee22; position: absolute; z-index: 990; border: solid 0px #696969; top: 100px; height: 3px; width: 3px; display: block; }
+                
+ .m_imputText{padding: 5px;width: 100px;border: solid 1px silver;border-radius:3px;height: 30px;font-size: 14pt;color:gray}
+
+ .example-form {  min-width: 150px;  max-width: 500px;  width: 100%}
+
+.example-full-width {  width: 100%;}
+
+.RedText{color:red;font-weight: bold}
+.GreenText{color:rgb(42, 155, 57);font-weight: bold}
+.BlueText{color:blue;font-weight: bold}
+
+.GreenSimbol{ margin:0px auto; width: 32px;line-height: 28px; background-color: #5cb85c; font-size: 17pt;color:white;font-weight: bold;border-radius: 5px;border:solid 2px silver}
+
+.borders3_01{border: solid 1px#428bca;margin:0px auto}
+
+
+
+    .mtooltip1_0{margin: 0px auto; position:relative;  background-color:#f0ad4e;  display:block;padding:4px;border-radius:5px;text-align:center;cursor:pointer;height:19px;border: solid 1px silver;width:26px  }   
+     .mtooltip1_0 .mtooltip1_1{
+		    top: -200px;
+    left: -5px; 
+		
+		z-index:10; position:absolute;display:none;background-color:#f8eee2;border:solid 3px #f0ad4e; border-radius:5px;width:335px;text-align:center;}
+     .mtooltip1_0:hover .mtooltip1_1{display:block}     
+     .mhover01{height:27px;line-height:27px;cursor:pointer;border-bottom: solid 1px #f0ad4e;padding:5px;text-align: right;color:maroon}
+	 .mhover01:hover{color:white;background-color:blue}
+	 
+
+	 .originalDiv{display: block;color:#c74fad}

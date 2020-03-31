@@ -1,0 +1,10 @@
+
+.GridBlueWhite{margin: 0px auto;padding:4px;border:solid 1px silver;border-radius: 4px}
+.GridBlueWhite > div {width:100%; display: table; background-color: White; border-right: solid 1px silver; direction: ltr}
+.GridBlueWhite > div > div { display: table-row;  width:100% }
+.GridBlueWhite > div > div:nth-child(2n + 1) { background-color: rgb(215, 229, 241) }
+.GridBlueWhite > div> div:nth-child(1) { background-color: #3F8BCA; color: white;height: 50px;vertical-align: middle;font-weight: bold }
+.GridBlueWhite > div> div > div { display: table-cell;  border-left: solid 1px silver;height: 40px;vertical-align: middle;text-align:center }
+
+
+
