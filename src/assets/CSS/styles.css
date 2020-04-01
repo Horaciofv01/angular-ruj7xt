@@ -757,7 +757,7 @@ input[type="radio"] {
   background-color: #f8f8f8;
   width: 32px;
   height: 28px;
-  background-image: url('../images/select.PNG');
+  background-image: url('https://cdn.jsdelivr.net/gh/Horaciofv01/angular-ruj7xt@mAssets/src/assets/images/select.PNG');
   cursor: pointer;
   background-repeat: no-repeat;
   border: solid 2px silver;
@@ -769,7 +769,7 @@ input[type="radio"] {
   background-color: #f8f8f8;
   width: 32px;
   height: 28px;
-  background-image: url('../images/x_03.png');
+  background-image: url('https://cdn.jsdelivr.net/gh/Horaciofv01/angular-ruj7xt@mAssets/src/assets/images/x_03.png');
   cursor: pointer;
   background-repeat: no-repeat;
   border: solid 2px silver;
@@ -781,7 +781,7 @@ input[type="radio"] {
   background-color: #f8f8f8;
   width: 32px;
   height: 28px;
-  background-image: url('../images/viewTable.png');
+  background-image: url('https://cdn.jsdelivr.net/gh/Horaciofv01/angular-ruj7xt@mAssets/src/assets/images/viewTable.png');
   cursor: pointer;
   background-repeat: no-repeat;
   border: solid 2px silver;
