@@ -745,7 +745,7 @@ input[type="radio"] {
   background-color: #f8f8f8;
   width: 32px;
   height: 28px;
-  background-image: url('../images/zoom.PNG');
+  background-image: url('https://cdn.jsdelivr.net/gh/Horaciofv01/angular-ruj7xt@mAssets/src/assets/images/zoom.PNG');
   cursor: pointer;
   background-repeat: no-repeat;
   border: solid 2px silver;
@@ -793,7 +793,7 @@ input[type="radio"] {
   background-color: #f8f8f8;
   width: 32px;
   height: 28px;
-  background-image: url('../images/viewFar1.png');
+  background-image: url('https://cdn.jsdelivr.net/gh/Horaciofv01/angular-ruj7xt@mAssets/src/assets/images/viewFar1.png');
   cursor: pointer;
   background-repeat: no-repeat;
   border: solid 2px silver;
@@ -805,7 +805,7 @@ input[type="radio"] {
   background-color: #f8f8f8;
   width: 32px;
   height: 28px;
-  background-image: url('../images/Refresh_24.png');
+  background-image: url('https://cdn.jsdelivr.net/gh/Horaciofv01/angular-ruj7xt@mAssets/src/assets/images/Refresh_24.png');
   cursor: pointer;
   background-repeat: no-repeat;
   border: solid 2px silver;
@@ -821,7 +821,7 @@ input[type="radio"] {
   width: 32px;
   height: 28px;
   display: inline-block;
-  background-image: url('../images/selectline.png');
+  background-image: url('https://cdn.jsdelivr.net/gh/Horaciofv01/angular-ruj7xt@mAssets/src/assets/images/selectline.png');
   cursor: pointer;
   background-repeat: no-repeat;
   border: solid 2px silver;
@@ -834,7 +834,7 @@ input[type="radio"] {
   width: 32px;
   height: 28px;
   display: inline-block;
-  background-image: url('../images/selectpoint.png');
+  background-image: url('https://cdn.jsdelivr.net/gh/Horaciofv01/angular-ruj7xt@mAssets/src/assets/images/selectpoint.png');
   cursor: pointer;
   background-repeat: no-repeat;
   border: solid 2px silver;

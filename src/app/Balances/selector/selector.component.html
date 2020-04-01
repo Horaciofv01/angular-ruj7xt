@@ -1,0 +1,1574 @@
+
+
+<Logos-component mTitle="איזון גאומטרי" mSubTitle="ניתוח נתונים"></Logos-component>
+<!-----<app-balons></app-balons>--->
+<input type="hidden" id="mReadyFlag" value="0">
+
+
+
+<div style="height:40px;display:block">{{mconfig.strPicPathAsset}}</div>
+<div style="width: 100%;height: 100px">
+
+    <div id="mSelectorNewProjectDiv_Exists" class="mTableMiddle" style="margin: 0px auto">
+        <div>
+          <!----
+            <div style="width: 350px">
+                <mat-form-field class="example-full-width">
+                    <input type="text" placeholder="פרוייקט קיים" aria-label="Assignee" matInput
+                        [formControl]="myControl" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="FillToNew($event)">
+                        <mat-option *ngFor="let option of AllProjectFiltered | async" [value]="option.strdescription"
+                            [id]="'projectid_' + option.id">
+                            {{option.strdescription}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+--->
+
+            <div style="width: 10px"></div>
+            <div>
+                <div class="mButtonGlificon" style="background-color: #428bca" (click)="UpdateProject()">
+                    <div>
+                        <div>
+                            <img src="{{mconfig.strPicPathAsset}}/assets/images//WhiteIcons/save-24.png" height="20px">
+                        </div>
+                        <div>
+                            עדכון
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="mButtonGlificon" style="background-color:#d9534f" (click)="ShowDeleteMessage ()">
+                    <div>
+                        <div>
+                            <img src="{{mconfig.strPicPathAsset}}/assets/images//WhiteIcons/delete-xl.png" height="20px">
+                        </div>
+                        <div>
+                            מחק
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="mButtonGlificon" style="background-color: #5CB85C;width:170px"
+                    (click)="changeSelectorProjectView(false)">
+                    <div style="width:170px">
+                        <div>
+                            <img src="{{mconfig.strPicPathAsset}}/assets/images//WhiteIcons/plus-5-xl.png" height="20px">
+                        </div>
+                        <div>
+                            יצירת פרויקט חדש
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="mSelectorNewProjectDiv_New" class="mTableMiddle" style="margin: 0px auto">
+        <div>
+            <div style="width: 200px">
+                <input id="newProjectNameTxt" type="text" placeholder="שם פרויקט החדש" class="introText"
+                    style="height: 31px;width:350px" />
+            </div>
+            <div style="width: 10px"></div>
+            <div>
+                <div class="mButtonGlificon" style="background-color: #428bca" (click)="SaveNewProject()">
+                    <div>
+                        <div>
+                            <img src="{{mconfig.strPicPathAsset}}/assets/images//WhiteIcons/save-24.png" height="20px">
+                        </div>
+                        <div>
+                            שמירת פרויקט
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="mButtonGlificon" style="background-color:#f0ad4e;width:170px"
+                    (click)="changeSelectorProjectView(true)">
+                    <div style='width:170px'>
+                        <div>
+                            <img src="{{mconfig.strPicPathAsset}}/assets/images//WhiteIcons/data-transfer-download-xl.png"
+                                height="20px">
+                        </div>
+                        <div>
+                            טעינת פרויקט קיים
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="height:40px;display:block"></div>
+<div class="mTableTop" style="width: 100%">
+    <div>
+        <div style="width:55%;padding: 15px; padding-top: 0px; text-align: center">
+            <div style="width: 99%; text-align: right;margin: 0px auto;padding:5px">
+                <div class="rtkTabs01">
+                    <div>
+                        <div>
+                            <div id='tabsDataFilesView' style="background:#c74fad; height: 65px;font-size: 14pt"
+                                (click)="mSelectorTab('DataFilesView')">
+                                ניהול קבצי נתונים
+                            </div>
+                        </div>
+                        <div>
+                            <div id='tabsLinesTabView'
+                                style="background-color: rgb(66, 139, 202); height: 50px;font-size: 14pt"
+                                (click)="mSelectorTab('LinesTabView');setObjectType(0)">
+                                קווים: {{showLinesOnFirstTable.length}}
+                            </div>
+                        </div>
+                        <div>
+                            <div id='tabsLoopsTabView'
+                                style="background: rgb(92, 184, 92); height: 50px;font-size: 14pt"
+                                (click)="mSelectorTab('LoopsTabView');setObjectType(1)">
+                                לולאות: {{showLoopsOnFirstTable.length}}
+                            </div>
+                        </div>
+                        <div style="width: 230px">
+                            <div id='tabsLoopsNETView'
+                                style="width: 230px;background:#d9534f; height: 50px;font-size: 14pt"
+                                (click)="mSelectorTab('LoopsNETView');setObjectType(1)">
+                                ל.בלתי תלויות: {{showLoopsNetsOnFirstTable.length}}&nbsp;/&nbsp; {{mNumberLoops}}
+                            </div>
+                        </div>
+                        <div>
+                            <div id='tabsPointsTabView'
+                                style="background: rgb(240, 173, 78); height: 50px;font-size: 14pt"
+                                (click)="mSelectorTab('PointsTabView')">
+                                נקודות: {{showPointsOnFirstTable.length}}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div
+                    style="width: auto;height: 638px;overflow-y: auto;border: solid 1px silver; border-top: none; overflow-x:hidden;background-color: rgb(233, 220, 219)">
+                    <div id="LinesTabView" style="display: none">
+
+                        <div style="display: block;margin: 3px; margin-top: 10px;margin-bottom: 10px">
+                            <input type="text" id="selectorLinesByChange" (input)="FilterLine($event)"
+                                placeholder="לפלטר" class="introText" style="height: 31px;width:130px" />
+                        </div>
+
+
+                        <div class="GridBlueWhite" style="border: none;padding: 0px">
+                            <div>
+                                <div>
+                                    <div>מספר קטעים</div>
+                                    <div>היקף</div>
+                                    <div>הפרש גובה</div>
+                                    <div>נקודה B</div>
+                                    <div>נקודה A</div>
+
+
+
+
+                                    <div style="width: 50px">
+                                    </div>
+                                    <div style="width: 50px">
+                                    </div>
+
+                                    <div style="width: 50px">
+                                        לתאם
+                                    </div>
+
+                                </div>
+
+                                <!-----------------------
+                                    -------------------------->
+
+                                <div name='linesRows' *ngFor="let item of showLinesOnFirstTable_filtered"
+                                    style="cursor: pointer"
+                                    class="linesRows_{{item.mPA}}_{{item.mPB}}_{{item.mOrder}} {{item.mClass}}"
+                                    (click)="SelectRow01('linesRows',item);ShowSelectedObject(item , 0, false);mViewGeneralAnalisis(item.mIndex , 0, true,false)">
+                                    <div>
+                                        <b>{{item.segmentNum}}</b>
+                                    </div>
+                                    <div>
+                                        <app-spaces10 mImput="{{item.mPerimeter}}"></app-spaces10>
+                                    </div>
+                                    <div>
+                                        <app-spaces10 mImput="{{item.mCloseAt}}"></app-spaces10>
+                                    </div>
+                                    <div style="font-weight: bold;color:navy">{{item.mPB}}</div>
+                                    <div style="font-weight: bold;color:navy">{{item.mPA}}</div>
+                                    <!--------------------
+                                    <div>
+                                        <div class='mtooltip1_0'>
+                                            <img height="20"
+                                                src="{{mconfig.strPicPathAsset}}/assets/images/WhiteIcons/data-transfer-download-xl.png" />
+                                            <div class="mtooltip1_1">
+                                                <div class="mhover01" (click)="getRezFile(item.mSegments)">REZ</div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+--------->
+                                    <div>
+                                        <div class="divZoomMap"
+                                            (click)="ShowSelectedObject(item , 0, true);mViewGeneralAnalisis(item.mIndex , 0,true,false)">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="divViewFar">
+                                        </div>
+                                    </div>
+                                    <div style="text-align: center">
+                                        <div class="div_AddDeleteTotihum_{{item.mIndex}} GreenSimbol"
+                                            (click)="AddNewSegmentToSelected(item.mIndex, $event)">+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="LoopsTabView" style="display: none">
+                        <div class="GridGreenWhite" style="border: none;padding: 0px">
+                            <div>
+                                <div>
+                                    <div>שטח</div>
+                                    <div>מספר קטעים</div>
+                                    <div>היקף</div>
+                                    <div>הפרש גובה</div>
+                                    <div>נקודה B</div>
+                                    <div>נקודה A</div>
+
+                                    <div style="width: 50px">
+                                    </div>
+                                    <div style="width: 50px">
+                                    </div>
+                                    <div style="width: 50px">
+                                        לתאם
+                                    </div>
+                                </div>
+                                <div name='loopsRows' *ngFor="let item of showLoopsOnFirstTable" style="cursor: pointer"
+                                    class="loopsRows_{{item.mPA}}_{{item.mPB}}_{{item.mOrder}} {{item.mClass}}"
+                                    (click)="SelectRow01('loopsRows',item);ShowSelectedObject(item , 1, false);mViewGeneralAnalisis(item.mIndex , 1, true,false)">
+                                    <div>
+                                        <app-spaces10 mImput="{{item.mArea}}"></app-spaces10>
+                                    </div>
+                                    <div><b>{{item.segmentNum}}</b>
+                                    </div>
+                                    <div>
+                                        <app-spaces10 mImput="{{item.mPerimeter}}"></app-spaces10>
+                                    </div>
+                                    <div>
+                                        <app-spaces10 mImput="{{item.mCloseAt}}"></app-spaces10>
+                                    </div>
+                                    <div style="font-weight: bold;color:navy">{{item.mPB}}</div>
+                                    <div style="font-weight: bold;color:navy">{{item.mPA}}</div>
+
+                                    <!-----------------------
+
+                                    <div>
+                                        <div class='mtooltip1_0'>
+                                            <img height="20"
+                                                src="{{mconfig.strPicPathAsset}}/assets/images/WhiteIcons/data-transfer-download-xl.png" />
+                                            <div class="mtooltip1_1">
+                                                <div class="mhover01" (click)="getRezFile(item.mSegments)">REZ</div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+--------->
+                                    <div style="text-align: center">
+                                        <div class="divZoomMap" (click)="ShowSelectedObject(item , 1, true)">
+                                        </div>
+                                    </div>
+                                    <div style="text-align: center">
+                                        <div class="divViewFar">
+                                        </div>
+                                    </div>
+                                    <div style="text-align: center">
+
+
+
+                                        <div class="div_AddDeleteTotihum_{{item.mIndex}} GreenSimbol"
+                                            (click)="AddNewSegmentToSelected(item.mIndex, $event)">
+                                            +</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="PointsTabView" style="display: none">
+                        <!--------- <div class="mTableMiddle">
+                         -----------
+                            <div >
+                                <div style="font-weight: bold">פקטור ג&quot;י פי:</div>
+
+                                <div style="display: block;margin: 3px; margin-top: 10px;margin-bottom: 10px"><input
+                                        [value]="gravFactor" (input)="resetGravValue($event)" class="introText"
+                                        id="selectorLinesByChange" placeholder="פקטור" style="height: 31px;width:130px"
+                                        type="text">
+                                </div>
+                            </div>
+                        </div>--------->
+                        <div class="GridOrangeWhite" style="width: 100%;border: none;padding: 0px">
+                            <div>
+                                <div>
+                                    <div>דרגה</div>
+                                    <div style="width: 200px">G(h)</div>
+                                    <div style="width: 200px">Ggal</div>
+                                    <div style="width: 200px">גובה אורטוגונלי</div>
+                                    <div>שם נקודה</div>
+                                    <div style="width: 50px">
+                                    </div>
+                                    <div style="width: 50px">
+                                    </div>
+                                </div>
+                                <div name='pointRows' *ngFor="let item of showPointsOnFirstTable"
+                                    style="cursor: pointer" class="pointRows_{{item.nam}}"
+                                    (click)="SelectRow02('pointRows',item)">
+                                    <div>{{item.dra}}
+                                    </div>
+                                    <div id="pointRows_Gh_{{item.nam}}">
+
+                                    </div>
+                                    <div>
+                                        <app-spaces10 mImput="{{item.gga}}"></app-spaces10>
+                                    </div>
+                                    <div>
+                                        <app-spaces10 mImput="{{item.heiort}}"></app-spaces10>
+                                    </div>
+
+                                    <div style="font-weight: bold;color:navy">{{item.nam}}</div>
+                                    <div>
+                                        <div class="divZoomMap" (click)="showPoint(item, true)">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="divViewFar" (click)="showPoint(item, false)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="LoopsNETView" style="display: none">
+                        <div class="GridRedWhite" style="border: none;padding: 0px">
+                            <div>
+                                <div>
+                                    <div>שטח</div>
+                                    <div>מספר קטעים</div>
+                                    <div>היקף</div>
+                                    <div>הפרש גובה</div>
+                                    <div>נקודה B</div>
+                                    <div>נקודה A</div>
+
+                                    <div style="width: 50px">
+                                    </div>
+                                    <div style="width: 50px">
+                                    </div>
+                                    <div style="width: 50px">
+                                        לתאם
+                                    </div>
+
+
+
+                                </div>
+                                <div name='LoopsNETRows' *ngFor="let item of showLoopsNetsOnFirstTable"
+                                    style="cursor: pointer;font-weight: bold"
+                                    class="LoopsNETRows_{{item.mPA}}_{{item.mPB}}_{{item.mOrder}} {{item.mClass}}"
+                                    (click)="SelectRow01('LoopsNETRows',item);ShowSelectedObject(item , 1, false);mViewGeneralAnalisis(item.mIndex , 1, true, false)">
+                                    <div>
+                                        <app-spaces10 mImput="{{item.mArea}}"></app-spaces10>
+                                    </div>
+                                    <div>
+                                        <b>{{item.segmentNum}}</b>
+
+                                    </div>
+                                    <div title="{{item.mPerimeter}}">
+                                        <app-spaces10 mImput="{{item.mPerimeter}}">
+                                        </app-spaces10>
+                                    </div>
+                                    <div>
+                                        <app-spaces10 mImput="{{item.mCloseAt}}"></app-spaces10>
+                                    </div>
+                                    <div style="font-weight: bold;color:navy">{{item.mPB}}</div>
+                                    <div style="font-weight: bold;color:navy">{{item.mPA}}</div>
+                                    <!--------
+
+                                    <div>
+                                        <div class='mtooltip1_0'>
+                                            <img height="20"
+                                                src="{{mconfig.strPicPathAsset}}/assets/images/WhiteIcons/data-transfer-download-xl.png" />
+                                            <div class="mtooltip1_1">
+                                                <div class="mhover01" (click)="getRezFile(item.mSegments)">REZ</div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+-------->
+
+
+                                    <div>
+                                        <div class="divZoomMap" (click)="ShowSelectedObject(item , 1, true);">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="divViewFar">
+                                        </div>
+                                    </div>
+
+
+
+                                    <div style="text-align: center">
+                                        <div class="div_AddDeleteTotihum_{{item.mIndex}} GreenSimbol"
+                                            (click)="AddNewSegmentToSelected(item.mIndex, $event)">
+                                            +</div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                        <br>
+                        <div style="width: 100%;text-align: right">
+                            <div class="mTableMiddle">
+                                <div>
+                                    <div style="font-weight: bold;font-size: 14pt">
+                                        לתאם הכל
+                                    </div>
+                                    <div style="width :5px"></div>
+                                    <div>
+                                        <div id="Div1_BiltiTluiotLaTihumSelector" style="background-color:#ffffff"
+                                            (click)="BiltiTluiotLaTihum()" class="greenButton">
+                                            <div id="Div1_BiltiTluiotLaTihumSelector1" style="left: 35px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>&nbsp;</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div id="DataFilesView" style="display: block;position:relative">
+                        <div style="height:40px;display:block"></div>
+                        <app-izun-manage-files></app-izun-manage-files>
+                        <div style="height:30px;display:block"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width: auto;text-align: center">
+
+            <div
+                style="width: 99%; border: solid 1px silver;padding:4px;border-radius: 4px;position:relative;margin: 0px auto">
+                <div style="color: rgb(255, 0, 0);font-weight: bold;overflow-y: auto;width:100%" id="mMessageNull">
+                </div>
+                <div style="width: 100%;height: 700px;background: linear-gradient(#358f32,#428bca,#d0d180)">
+                    <div id='cesiumcontainer' style="width: 100%;height: 700px;">
+                    </div>
+                </div>
+                <!-----------------Tools1 Table------------------>
+                <div style="display: none" id='mFlagresults'></div>
+                <table style="position: absolute; top: 10px; left: 10px; z-index: 1000; color: black">
+                    <tr>
+                        <td style="text-align: left">
+                            <div style="background-color: #fffafa;;opacity:0.7;border-radius:4px;padding:3px;margin:2px; color: #000099; z-index: 1; width: auto;font-size:12pt; text-align: left"
+                                id="hud01">ללא סימון על מפה</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width:100px">
+                            <!--Event listener click on mCesium.directive-->
+                            <div style="display: inline-block" (click)="mButZoomToMap()" class="divZoomMap"
+                                id="mButZoomToMap">
+                            </div>
+                            <!--Event listener click on mCesium.directive-->
+                            <div style="display: inline-block" (click)="mButSelectRectangle()" class="divSelectInMap"
+                                id="mButSelectRectangle">
+                            </div>
+                            <div style="display: inline-block" (click)="mButDeselectAll()" class="divClearSelection"
+                                id="mButDeselectAll">
+                            </div>
+
+
+                            <div id="refreshMapButton" style="display: inline-block" (click)="RefreshPage()"
+                                class="divRefresh">
+                            </div>
+
+
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div onclick="document.getElementById('mwaitmediv').style.display = 'block'"
+                                (click)="doAnalisisOfSelected(false)" id="doAnalisisOfSelected"
+                                class="mButtonNoColor IzunBlue">
+                                ניתוח בחירה</div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div (click)="doAnalisisOfSelected(true);" class="mButtonNoColor IzunBlue">
+                                בחר הכל</div>
+                        </td>
+                    </tr>
+
+                    <tr id='moreresultsDiv' style="display:none">
+                        <td>
+                            <div id="butMoreResults" (click)="getMoreObjects()" class="mButtonNoColor IzunBlue">
+                                תוצאות נוספות</div>
+
+                            <div style="display :block;height: 4px"></div>
+                            <div id="butMoreResultsALL" (click)="mClickButton(0)" class="mButtonNoColor IzunBlue">
+                                כל התוצאות</div>
+
+                            <div style="display :block;height: 4px"></div>
+                            <div id="butMoreResultsLoopsNET" (click)="mClickButton(1)" class="mButtonNoColor IzunBlue">
+                                כל הבלתי תלויות</div>
+                        </td>
+                    </tr>
+                </table>
+                <!--------------------------------------4 dinamic segemnts (selectors)-------------------------------------------------->
+                <div id="divSelector1" class="square1">
+                </div>
+                <div id="divSelector2" class="square1">
+                </div>
+                <div id="divSelector3" class="square1">
+                </div>
+                <div id="divSelector4" class="square1">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+
+
+
+
+<div id="mContainer01" style="display: none"></div>
+
+
+<div>
+    <div class="mTableMiddle">
+        <div>
+            <div style="font-weight: bold;font-size: 14pt">
+                בחר קצוות
+            </div>
+            <div style="width :5px"></div>
+            <div>
+                <div id="Div1_LineChecks01Selector" style="background-color: yellowgreen" (click)="SelectKitzvat()"
+                    class="greenButton">
+                    <div id="Div1_LineChecks01Selector1" style="left: 1px;">
+                    </div>
+                </div>
+            </div>
+
+            <div style="width :10px"></div>
+
+
+
+
+
+            <div style="font-weight: bold;font-size: 14pt">בחירת קטעים: </div>
+            <div style="width :5px"></div>
+            <div><select (change)="SelectRowToCalculate($event)" id="selectorSegementGroups" class="mSelectCSS"
+                    style="width: 400px;">
+                </select>
+            </div>
+
+            <div style="width :10px"></div>
+
+            <div style="font-weight: bold;font-size: 14pt">בחירת דרגה: </div>
+            <div style="width :5px"></div>
+            <div><select (change)="SelectRank($event)" id="selectorRank" class="mSelectCSS" style="width: 100px;">
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div style="display:block;height: 20px"></div>
+    <div id="firstResultTable_html" class="GridSilverWhite" style="display:none; width:679px; font-weight: bold">
+        <div>
+            <div>
+                <div style="width: 300px;text-align :center">
+                    ערך
+                </div>
+                <div style="width: 150px;text-align :center">
+                    תיאור
+                </div>
+            </div>
+            <div *ngFor="let item of tihumInteractive.tableFirstResults">
+                <div [ngClass]="item.mKey3">
+                    <app-spaces10 mImput="{{item.mKey2}}"></app-spaces10>
+                </div>
+                <div>
+                    {{item.mKey1}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="display:block;height: 20px"></div>
+
+
+    <div class="mTableMiddle" style="font-size: 14pt">
+
+        <div>
+
+            <div style="font-weight: bold;font-size: 14pt">
+                תיקון גרבימטרי
+            </div>
+            <div style="width:20px"></div>
+            <div id="buttonGravimetryGO" (click)="GoAndBack(false)"
+                style="font-weight: bolder; color:red;cursor:pointer;font-size: 17pt">
+                &lt;&lt;&lt;</div>
+            <div style="width:20px"></div>
+            <div
+                style="width:250px;border:solid 1px silver;border-radius: 10px;height: 40px;text-align: center;line-height: 40px">
+                {{mgrav.title}}</div>
+            <div style="width:20px"></div>
+            <div id="buttonGravimetryBack" (click)="GoAndBack(true)"
+                style="color: blue;font-weight: bolder;cursor:pointer;font-size: 17pt">
+                &gt;&gt;&gt;</div>
+            <div style="width:20px"></div>
+            <div>ספירה</div>
+            <input type="hidden" id="mGravimCounterHidden" value="{{mgrav.mCounter}}">
+            <div style="width:10px"></div>
+            <div>{{mgrav.mCounter}}</div>
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+    <div style="display:block;height: 20px"></div>
+
+
+
+
+
+
+
+
+
+
+
+    <div class="rtkTabs02">
+        <div>
+            <div>
+                <div id='tabsLinesTabGralAnalisis'
+                    style="background-color: rgb(66, 139, 202); height: 65px;font-size: 14pt"
+                    (click)="mSelectorTab_01('LinesTabGralAnalisis')">
+                    ניתוח קו \ לולאה בודדת
+                </div>
+            </div>
+            <div>
+                <div id='tabsSelectKnowedPoints' style="background: rgb(92, 184, 92); height: 50px;font-size: 14pt"
+                    (click)="mSelectorTab_01('SelectKnowedPoints')">
+                    בחירת נקודות ידועות
+                </div>
+            </div>
+            <div>
+                <div id='tabsTihumMutneAnalisis' style="background: rgb(240, 173, 78); height: 50px;font-size: 14pt"
+                    (click)="mSelectorTab_01('TihumMutneAnalisis')">
+                    לתיאום מותנה
+                </div>
+            </div>
+
+            <div>
+                <div id='tabsCheckFilesDiv' (click)="mSelectorTab_01('CheckFilesDiv')"
+                    style="background:#c74fad; height: 50px;font-size: 14pt">
+                    בקרת חומר
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="LinesTabGralAnalisis" style="display: block">
+        <div class="GridBlueWhite" style="border: none;padding: 0px">
+            <div>
+                <div>
+
+                    <div>
+                        <div class='mtooltip1_0'>
+                            <img height="20" src="{{mconfig.strPicPathAsset}}/assets/images/WhiteIcons/data-transfer-download-xl.png" />
+                            <div class="mtooltip1_1" style="color:black">
+
+                                <div class="mhover01" (click)="ReverseSelected()">
+                                    <span> להפוך </span>
+
+                                </div>
+
+
+                                <div class="mhover01" (click)="getRezFileByshowTable()">
+                                    <span>עבור לולאה או רשת מדידה נבחרים</span><span> - </span> <span> Rez </span>
+                                    <span> דוח</span>
+
+                                </div>
+                                <div class="mhover01" (click)="getRezAllLines()">
+
+                                    <span>עבור כל עבודת המדידה</span><span> - </span> <span> Rez </span> <span>
+                                        דוח</span>
+                                </div>
+
+
+                                <div class="mhover01" (click)="GetFA0File(true)">
+                                    <span>(לפי א"ב)</span><span> - </span> <span> FA0 </span> <span> דוח</span>
+                                </div>
+                                <div class="mhover01" (click)="GetFA0File(false)">
+                                    <span>(לפי סדר קווי)</span><span> - </span> <span> FA0 </span> <span> דוח</span>
+                                </div>
+
+
+                                <div class="mhover01">
+                                    <span> FA1 </span> <span> דוח</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div style="width: 50px">
+                    </div>
+                    <div style="width: 50px">
+                    </div>
+                    <div>A נקודה</div>
+                    <div>B נקודה</div>
+                    <div>
+                        <span>הפרש גובה מדוד</span>
+                        <span style="display: block">(PB - PA)</span>
+                        <b style="color:white;display:block">
+                            מקור
+                        </b>
+                    </div>
+                    <div>
+                        <span>הפרש גובה בנגל</span>
+                        <span style="display: block">(PB - PA)</span>
+                    </div>
+                    <div>מרחק</div>
+                    <!----<div>דרגה</div>
+                <div>שגיאה מותרת</div>
+---->
+
+
+                    <div>
+                        <span>הפרש בין</span>
+                        <span style="display: block">הלוך לחזור</span>
+                    </div>
+
+                    <!----
+                <div>סטטוס הפרש גובה</div>----->
+                    <div>
+
+                        <div class="mTableBottom">
+                            <div>
+                                <div>OC</div>
+                                <div style="font-size: 11px">AB</div>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                    <div>הפרשי גובה מחושבים</div>
+                    <div>וקטור W
+
+                        <b style="color:white;display:block">
+                            מקור
+                        </b>
+
+                    </div>
+                    <div>A גובה נקודה</div>
+                    <div>B גובה נקודה</div>
+                </div>
+
+
+
+                <div *ngFor="let item of showTableAnalisisGral" name="showTableAnalisisGral_row"
+                    id="showTableAnalisisGral_row_{{item.mOrder - 1}}">
+                    <div style="width: 50px">{{item.mOrder}}</div>
+                    <div style="text-align: center">
+                        <div class="divZoomMap" (click)="showSegment(item, true)">
+                        </div>
+                    </div>
+                    <div style="text-align: center">
+                        <div class="divViewFar" (click)="showSegment(item, false)">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="mTableMiddle">
+                            <div>
+                                <div style="width: 50px"><input name="nCheckToTry" [disabled]="item.heigBangalA == null"
+                                        (change)="newCheckBoxTry(item,true,$event)" class="nCheckToTry_{{item.PA}}"
+                                        type="checkbox" [checked]="item.heigBangalA != null"
+                                        style="transform: scale(2);cursor:pointer">
+                                </div>
+                                <div style="width: 90px"> {{item.PA}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="mTableMiddle">
+                            <div>
+                                <div style="width: 50px"><input name="nCheckToTry"
+                                        (change)="newCheckBoxTry(item, false, $event)"
+                                        [disabled]="item.heigBangalB == null" class="nCheckToTry_{{item.PB}}"
+                                        type="checkbox" [checked]="item.heigBangalB != null"
+                                        style="transform: scale(2);cursor:pointer">
+                                </div>
+                                <div style="width: 90px"> {{item.PB}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div title="{{item.HeighDifByRez}}" id="showTGral_HeighDifByRez_{{item.mOrder - 1}}">
+                        <app-spaces10 mImput="{{item.HeighDifByRez}}"></app-spaces10>
+                        <div class='originalDiv'>
+                            <app-spaces10 mImput="{{item.HeighDifByRezOriginal}}"></app-spaces10>
+                        </div>
+                    </div>
+                    <div>
+                        <app-spaces10 mImput="{{item.HeighDifByBangal}}"></app-spaces10>
+                    </div>
+                    <div>
+                        <app-spaces10 mImput="{{item.Distance}}"></app-spaces10>
+                    </div>
+                    <div>
+                        <app-spaces10 mImput="{{item.BF_FB}}"></app-spaces10>
+                    </div>
+                    <div title="{{item.OCab}}" id="showTGral_Ocab_{{item.mOrder - 1}}">
+                    </div>
+
+
+                    <div id="showTGral_HeighDifCalculated_{{item.mOrder - 1}}">
+                        <app-spaces10 mImput="{{item.HeighDifCalculated}}"></app-spaces10>
+                    </div>
+                    <div title="{{item.WVector}}" id="showTGral_WVector_{{item.mOrder - 1}}">
+                        <app-spaces10 mImput="{{item.WVector}}"></app-spaces10>
+                        <div class='originalDiv'>
+                            <app-spaces10 mImput="{{item.WVectorOriginal}}"></app-spaces10>
+                        </div>
+                    </div>
+                    <div id="showTGral_AltitudePA_{{item.mOrder - 1}}">
+
+                    </div>
+                    <div id="showTGral_AltitudePB_{{item.mOrder - 1}}">
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div id="SelectKnowedPoints" style="display: none;direction: ltr">
+
+        <div class="GridGreenWhite" style="border: none;padding: 3px;margin-top: -4px">
+            <div>
+                <div>
+                    <div>
+                        <span> גובה</span>
+                    </div>
+
+                    <div style="width: 300px;text-align:right">
+                        <div class="mTableMiddle">
+                            <div style="width: 300px">
+                                <div
+                                    style="margin: 3px; margin-top: 10px;margin-bottom: 10px;display: inline-block;direction: rtl">
+                                    <input type="text" (input)="filterLoopsNet($event)" placeholder="לפלטר"
+                                        class="introText" style="height: 31px;width:130px" />
+                                </div>
+
+                                <div style="width: 90px"> שם נקודה</div>
+                                <div style="width: 50px">
+                                    <!----------------
+                                    <input checked (change)="ClearAllCheckBox($event)"
+                                        type="checkbox" style="transform: scale(2);cursor:pointer">
+                                    
+                                    ---------->
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="width: 50px">
+                    </div>
+                    <div style="width: 50px">
+                    </div>
+
+
+
+                </div>
+                <div name='RezFiles' *ngFor="let item of mKnowedNETPoints_filterd" style="cursor: pointer">
+                    <div style="text-align:right;padding-right: 10px">{{item.heiort}}</div>
+                    <div style="width: 160px;text-align:right;padding-right:10px">
+                        <div class="mTableMiddle">
+                            <div>
+                                <div style="width: 90px"> {{item.nam}}</div>
+                                <div style="width: 50px"><input name="nCheckToTry"
+                                        (change)="newCheckBoxTry_01(item.nam,item.nam,true,$event)  //newCheckBoxTryLoopsNet(item,true,$event);"
+                                        class="nCheckToTry_{{item.nam}}" type="checkbox" [checked]="item.bValid"
+                                        style="transform: scale(2);cursor:pointer">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div style="text-align: center">
+                        <div class="divZoomMap" (click)="showPoint_01(item, true)">
+                        </div>
+                    </div>
+                    <div style="text-align: center">
+                        <div class="divViewFar" (click)="showPoint_01(item, false)">
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <br />
+    </div>
+
+    <div id="TihumMutneAnalisis" style="display: none">
+        <div class="GridOrangeWhite" style="border: none;padding: 3px;margin-top: -4px">
+            <div>
+                <div>
+                    <div>שטח</div>
+                    <div>מרחק</div>
+                    <div>הפרש גובה</div>
+                    <div style="width:250px">תיאור</div>
+                    <div>B נקודה</div>
+                    <div>A נקודה</div>
+                    <div style="width: 50px">
+                    </div>
+                    <div style="width: 50px">
+                    </div>
+                    <div style="width: 50px">
+                        ביטול נקודה
+                    </div>
+                    <div></div>
+
+                </div>
+                <div *ngFor="let item of segmentsToTihum" style="cursor: pointer">
+
+                    <div>
+                        <app-spaces10 mImput="{{item.mArea}}"></app-spaces10>
+                    </div>
+                    <div>
+                        <app-spaces10 mImput="{{item.perimeter}}"></app-spaces10>
+                    </div>
+                    <div>
+                        <app-spaces10 mImput="{{item.closeVector}}"></app-spaces10>
+                    </div>
+                    <div>{{item.strDescrption}}</div>
+                    <div>{{item.PB}}</div>
+                    <div>{{item.PA}}</div>
+                    <div style="text-align: center">
+                        <div class="divZoomMap" (click)="ShowLine(item.msegments, true)">
+                        </div>
+                    </div>
+                    <div style="text-align: center">
+                        <div class="divViewFar" (click)="ShowLine(item.msegments, false)">
+                        </div>
+                    </div>
+                    <div style="text-align: center">
+                        <div (click)="DeleteTihumListed(item.id,  item.mIndex)" style="background-color: #D9534F"
+                            class="GreenSimbol">×
+                        </div>
+                    </div>
+
+                    <div>{{item.id}}</div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br />
+        <div class="mTableMiddle">
+            <div>
+                <div style="font-weight: bold">חישוב סיגמה ע"פ: </div>
+                <div style="width: 5px"></div>
+                <div><select id="selectorMatrixSigma" class="mSelectCSS">
+                        <option value="0">מרחק</option>
+                        <option selected value="1">הלוך חזור</option>
+                    </select>
+                </div>
+                <div style="width: 10px"></div>
+                <div style="text-align: left">
+                    <div class="mButtonGlificon"
+                        style="background-color: #5CB85C;padding:5px;margin-left: 1px;width:160px"
+                        (click)="UpdateAditionalSegments()">
+                        <div>
+                            <div>
+                                <img src="{{mconfig.strPicPathAsset}}/assets/images/CalculationOptions_32x32.png" height="32px">
+                            </div>
+                            <div>
+                                עדכון ע"פ נקודות ידועות
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 10px"></div>
+                <div style="text-align: left">
+                    <div class="mButtonGlificon" style="background-color: #5CB85C;padding:5px;margin-left: 1px"
+                        (click)="CalculateLoopsNET()">
+                        <div>
+                            <div>
+                                <img src="{{mconfig.strPicPathAsset}}/assets/images/CalculationOptions_32x32.png" height="32px">
+                            </div>
+                            <div>
+                                חשב תיאום
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 10px"></div>
+                <div style="text-align: left">
+                    <div class="mButtonGlificon"
+                        style="background-color: #d9534f;padding:5px;margin-left: 1px;width:100px"
+                        (click)="ClearTihumArray()">
+                        <div style='width:100px'>
+                            <div>
+                                <img src="{{mconfig.strPicPathAsset}}/assets/images/close.png" height="32px">
+                            </div>
+                            <div>
+                                נקה
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br>
+        <div id="divLoopNet" style="display: none;min-height: 600px;width:100%">
+            <div style="width: 100%;margin: 0px auto">
+                <div class="mTableBottom" style="height: 60px">
+                    <div>
+                        <div>
+                            <div id="tabsLoosNetResults1" class="mTabsGrey" style="border:solid 1px#428bca;
+                            border-bottom:solid 1px#428bca;
+                            background-color:#428bca;
+                            margin-bottom:-2px;
+                            color:white;
+                            line-height: 60px;height: 60px" (click)="loopNetSubTabs(1)">
+                                כללי
+                            </div>
+                        </div>
+                        <div>
+                            <div id="tabsLoosNetResults2" class="mTabsGrey" (click)="loopNetSubTabs(2)">REZ
+                            </div>
+                        </div>
+                        <div>
+                            <div id="tabsLoosNetResults3" class="mTabsGrey" (click)="loopNetSubTabs(3)">וקטור W
+                            </div>
+                        </div>
+                        <div>
+                            <div id="tabsLoosNetResults4" class="mTabsGrey" (click)="loopNetSubTabs(4)">
+                                מטריצה
+                                L_a</div>
+                        </div>
+
+                        <div>
+                            <div id="tabsLoosNetResults5" class="mTabsGrey" (click)="loopNetSubTabs(5)">גובה
+                                מחושבת</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="background-color:#428bca;width:99%;margin:0px auto; margin-top: -4px;border:none"
+                    class="borders3_01">
+                    <div id="divLoopsResultsTabs_1" style="display: block">
+
+                        <div class="GridBlueWhite GridLeftRight" style="border: none;padding: 3px;font-weight: bold">
+                            <div>
+                                <div>
+                                    <div>ארך</div>
+                                    <div style="width: 150px">תיאור</div>
+                                </div>
+                                <div>
+                                    <div>{{solveLoosFirstData.n_edges}}</div>
+                                    <div>מס&quot; קווים ברשת </div>
+                                </div>
+                                <div>
+                                    <div>{{solveLoosFirstData.n_vertices}}</div>
+                                    <div>מס&quot; הצלאות</div>
+                                </div>
+                                <div>
+                                    <div>{{solveLoosFirstData.n_conditions}}</div>
+                                    <div>מס&quot; תנאים</div>
+                                </div>
+                                <div>
+                                    <div>{{solveLoosFirstData.n_loops}}</div>
+                                    <div>מס&quot; לולאות</div>
+                                </div>
+                                <div>
+                                    <div>{{solveLoosFirstData.n_BM}}</div>
+                                    <div>מס&quot; נקודות ידועות</div>
+                                </div>
+                                <div>
+                                    <div>1</div>
+                                    <div>סיגמה הפריורי</div>
+                                </div>
+                                <div>
+                                    <div>{{solveLoopsNets_Main3.sigmaPosteriori}}</div>
+                                    <div>סיגמה הפוסטורי</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="divLoopsResultsTabs_2" style="display: none">
+
+
+
+
+                        <div class="GridBlueWhite GridLeftRight" style="border: none;padding: 3px;font-weight: bold">
+                            <div>
+                                <div>
+                                    <div style="width: 50px">
+                                    </div>
+                                    <div style="width: 50px">
+                                    </div>
+                                    <div>סדר</div>
+                                    <div>PA</div>
+                                    <div>PB</div>
+                                    <div>הפרש גובה</div>
+                                    <div>מרחק</div>
+                                    <div>עמדות</div>
+                                    <div>BF-FB</div>
+                                    <div>תאריך</div>
+                                    <div>קובץ</div>
+                                </div>
+                                <div name='RezFiles' *ngFor="let item of this.solveLoopsNets_Main3.RezFile"
+                                    style="cursor: pointer;font-weight: bold">
+                                    <div style="text-align: center">
+                                        <div class="divZoomMap"
+                                            (click)="DeselectAll();ShowSegmentByName(item.Point_A,item.Point_B, true)">
+                                        </div>
+                                    </div>
+                                    <div style="text-align: center">
+                                        <div class="divViewFar"
+                                            (click)="DeselectAll();ShowSegmentByName(item.Point_A,item.Point_B,false)">
+                                        </div>
+                                    </div>
+                                    <div>{{item.mOrder}}</div>
+                                    <div>{{item.Point_A}}</div>
+                                    <div>{{item.Point_B}}</div>
+                                    <div>
+                                        <app-spaces10 mImput="{{item.Height_Difference}}"></app-spaces10>
+                                    </div>
+                                    <div>
+                                        <app-spaces10 mImput="{{item.Distance}}">
+                                        </app-spaces10>
+                                    </div>
+                                    <div>{{item.Num_Across}}</div>
+                                    <div>{{item.Difference_Between_BF}}</div>
+                                    <div>{{item.Date_Measured}}</div>
+                                    <div>{{item.Name_File}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="divLoopsResultsTabs_3" style="display: none">
+
+                        <div class="GridBlueWhite GridLeftRight" style="border: none;padding: 3px;font-weight: bold">
+                            <div>
+                                <div>
+                                    <div>ארך</div>
+                                </div>
+                                <div *ngFor="let item of solveLoopsNets_Main3.matrixW">
+                                    <div>
+                                        <app-spaces10 mImput="{{item}}"></app-spaces10>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="divLoopsResultsTabs_4" style="display: none">
+
+                        <div class="GridBlueWhite  GridLeftRight" style="border: none;padding: 3px;margin: 0px">
+                            <div>
+                                <div>
+                                    <div>הפרש גובה מחושב</div>
+                                    <div style="width: 150px">נקודה B</div>
+                                    <div style="width: 150px">נקודה A</div>
+
+                                    <div style="width: 50px">
+                                    </div>
+                                    <div style="width: 50px">
+                                    </div>
+                                </div>
+                                <div *ngFor="let item of solveLoopsNets_Main3.calculatedDelta">
+                                    <div>
+                                        <app-spaces10 mImput="{{item.HeighDiff}}"></app-spaces10>
+                                    </div>
+                                    <div>{{item.PointB}}</div>
+                                    <div>{{item.PointA}}</div>
+                                    <div style="text-align: center">
+                                        <div class="divZoomMap"
+                                            (click)="DeselectAll();ShowSegmentByName(item.Point_A,item.Point_B, true)">
+                                        </div>
+                                    </div>
+                                    <div style="text-align: center">
+                                        <div class="divViewFar"
+                                            (click)="DeselectAll();ShowSegmentByName(item.Point_A,item.Point_B,false)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="divLoopsResultsTabs_5" style="display: none">
+                        <div class="GridBlueWhite GridLeftRight" style="border: none;padding: 3px;font-weight: bold">
+                            <div>
+                                <div>
+                                    <div>גובה</div>
+                                    <div style="width: 150px">נקודה</div>
+
+                                    <div style="width: 50px">
+                                    </div>
+                                    <div style="width: 50px">
+                                    </div>
+                                </div>
+                                <div *ngFor="let item of solveLoopsNets_Main3.calculatedHeight">
+                                    <div>
+                                        <app-spaces10 mImput="{{item.mHeight}}"></app-spaces10>
+                                    </div>
+                                    <div>{{item.Point}}</div>
+                                    <div style="text-align: center">
+                                        <div class="divZoomMap" (click)=" showPointByName(item.Point, true)">
+                                        </div>
+                                    </div>
+                                    <div style="text-align: center">
+                                        <div class="divViewFar" (click)=" showPointByName(item.Point, false)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="display: block;height: 50px"></div>
+
+
+
+
+
+
+    </div>
+
+
+    <div id="CheckFilesDiv" style="display: none">
+
+
+        <div class="mTableTop" style="width: 100%">
+            <div>
+                <div style="width: 383px">
+
+
+                    <div class="rtkTabs01">
+                        <div>
+
+
+                            <div>
+                                <div id="tabsCheckfiles1" (click)="tabsCheckfiles(1)"
+                                    style="background: rgb(92, 184, 92); height: 65px;font-size: 14pt">
+
+                                    <span>תקין</span><span> / </span><span>{{checkRank.rankTable0.length}}</span>
+
+
+
+                                </div>
+                            </div>
+                            <div>
+                                <div id="tabsCheckfiles2" (click)="tabsCheckfiles(2)"
+                                    style="background: rgb(217, 83, 79); height: 50px; font-size: 14pt;border-top-left-radius: 0px">
+                                    <span>לא תקין</span><span> / </span><span>{{checkRank.rankTable1.length}}</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div id="checkRanktitle"
+                    style="color:white;font-size: 16pt; width:auto;background-color: #c74fad;height: 65px;line-height: 65px">
+
+
+                    לא בחרו קטע
+
+
+
+
+                </div>
+            </div>
+
+
+
+
+            <div>
+
+                <div>
+
+                    <div id="TabsCheckFilesList1" class="GridGreenWhite" style=" border: none;padding:0px;width:100%">
+                        <div>
+                            <div>
+                                <div>קטע</div>
+
+
+                                <div style="width: 50px">
+                                </div>
+                                <div style="width: 50px">
+                                </div>
+                                <div>
+
+                                </div>
+                            </div>
+
+
+
+
+
+
+                            <div style='cursor:pointer' name='RankTableGreen' *ngFor="let item of checkRank.rankTable0"
+                                class="RankTableGreen_{{item.id}}"
+                                (click)="SelectRow03 ( 'RankTableGreen', item.id );getRankDetailsTable(item)">
+                                <div>0</div>
+                                <div>{{item.mExceptions}}</div>
+                                <div><span>{{item.PointA}}</span><span> / </span><span>{{item.PointB}}</span></div>
+                                <div style="text-align: center">
+                                    <div class="divZoomMap"
+                                        (click)="DeselectAll();ShowSegmentByName(item.PointA,item.PointB, true)">
+                                    </div>
+                                </div>
+                                <div style="text-align: center">
+                                    <div class="divViewFar"
+                                        (click)="DeselectAll();ShowSegmentByName(item.PointA,item.PointB,false)">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <img src="{{mconfig.strPicPathAsset}}/assets/images/checked_32x32.png">
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+
+
+                    <div id="TabsCheckFilesList2" class="GridRedWhite"
+                        style="display: none; border: none;padding:0px;width:100%">
+
+                        <div>
+                            <div>
+                                <div>חריג</div>
+                                <div>קטע</div>
+
+
+                                <div style="width: 50px">
+                                </div>
+                                <div style="width: 50px">
+                                </div>
+                                <div>
+
+                                </div>
+                            </div>
+
+
+
+
+                            <div style='cursor:pointer' name='RankTableRed' *ngFor="let item of checkRank.rankTable1"
+                                class="RankTableRed_{{item.id}}"
+                                (click)="SelectRow03 ( 'RankTableRed', item.id );getRankDetailsTable(item)">
+                                <div>{{item.mExceptions}}</div>
+                                <div><span>{{item.PointA}}</span><span> / </span><span>{{item.PointB}}</span></div>
+                                <div style="text-align: center">
+                                    <div class="divZoomMap"
+                                        (click)="DeselectAll();ShowSegmentByName(item.PointA,item.PointB, true)">
+                                    </div>
+                                </div>
+                                <div style="text-align: center">
+                                    <div class="divViewFar"
+                                        (click)="DeselectAll();ShowSegmentByName(item.PointA,item.PointB,false)">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <img src="{{mconfig.strPicPathAsset}}/assets/images/warning_32x32.png">
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div id="mDetailsRankHTML"
+                    style="width:auto;padding:10px;text-align: right;font-size: 13pt;background-color: #ecd5e7">
+
+                    <br>ללא רשימות<br><br>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div id='mDeleteProjectMessage' style="display: none">
+    <div
+        style='width:100%;height:100%;background-color:#000000;opacity:0.3;position:fixed;z-index:100;top:0px;left:0px'>
+    </div>
+    <div style='width:100%;height:100%;position:fixed;z-index:1000;top:0px;left:0px'>
+        <div
+            style='padding: 10px; width:400px;height:200px;position:absolute;margin:auto;top:0px;left:0px;bottom:0px;right:0px;background:#ffffff;display:block;z-index:101;border-radius:4px;border:solid 1px gray'>
+            <table style="width: 100%">
+                <tr style="vertical-align: middle">
+                    <td style="height: 40px;text-align: center;border-bottom: solid 1px silver">
+
+                        <div class="mTableMiddle">
+                            <div>
+                                <div><img style="display: inline-block" alt='Wait'
+                                        src="{{mconfig.strPicPathAsset}}/assets/images/question.png" />
+                                </div>
+                                <div><span style="font-size: 14pt">שאלה</span></div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height: 100px;text-align: center;font-size: 14pt;border-bottom: solid 1px silver">
+
+
+                        האם את\ה בטוח למחוק הפרוייקט הנבחר?
+
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height: 40px;text-align: left">
+                        <span class="mLinkMessageBox" (click)="DeleteProject()">אישור</span>
+
+                        <span class="mLinkMessageBox" (click)="CancelDelete()">בטל</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div id='mDeleteProjectMessageAdvertence' style="display: none">
+    <div
+        style='width:100%;height:100%;background-color:#000000;opacity:0.3;position:fixed;z-index:100;top:0px;left:0px'>
+    </div>
+    <div style='width:100%;height:100%;position:fixed;z-index:1000;top:0px;left:0px'>
+        <div
+            style='padding: 10px; width:400px;height:200px;position:absolute;margin:auto;top:0px;left:0px;bottom:0px;right:0px;background:#ffffff;display:block;z-index:101;border-radius:4px;border:solid 1px gray'>
+            <table style="width: 100%">
+                <tr style="vertical-align: middle">
+                    <td style="height: 40px;text-align: center;border-bottom: solid 1px silver">
+
+                        <div class="mTableMiddle">
+                            <div>
+                                <div><img style="display: inline-block" alt='Wait'
+                                        src="{{mconfig.strPicPathAsset}}/assets/images/warning_32x32.png" />
+                                </div>
+                                <div><span style="font-size: 14pt">הודעה</span></div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="AdevrtenceMessadeTD"
+                        style="height: 100px;text-align: center;font-size: 14pt;border-bottom: solid 1px silver">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height: 40px;text-align: left">
+                        <span class="mLinkMessageBox" (click)="CancelDelete()">אישור</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<waitme-component></waitme-component>
