@@ -28,6 +28,9 @@ export class LogosComponent implements OnInit
         if ( this.mTitle == '' && this.mSubTitle == '' )
             document.getElementById( "mPageTitles" ).style.display = "none";
 
+
+        this.mconfig = new mConfig();
+
     }
 }
 

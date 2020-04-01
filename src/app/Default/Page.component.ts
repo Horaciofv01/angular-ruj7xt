@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { mConfig  } from '../Commons/mConfig';
 
 
 
@@ -11,7 +11,7 @@ export class PageComponent implements OnInit
 {
 
 
-
+mconfig : mConfig;
     constructor ()
     {
 
@@ -19,6 +19,7 @@ export class PageComponent implements OnInit
 
     ngOnInit ()
     {
+this.mconfig = new mConfig();
 
     }
 }
