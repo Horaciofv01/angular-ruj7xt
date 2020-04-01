@@ -495,7 +495,6 @@ input[type="radio"] {
 
 .GridSagolWhite>div>div>div {
   font-weight: bold;
-  text-align: left;
   border-bottom: solid 1px silver;
   display: table-cell;
   border-left: solid 1px silver;
@@ -675,7 +674,6 @@ input[type="radio"] {
 
 .mSelectCSS>option {
   background-color: #FfFfFf;
-  cursor: pointer;
   padding: 5px;
   cursor: pointer;
   height: 20px;

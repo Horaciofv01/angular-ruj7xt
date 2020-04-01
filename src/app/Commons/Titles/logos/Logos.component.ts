@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { mConfig  } from '../../mConfig';
+
 
 @Component( {
     selector: 'Logos-component',
@@ -10,6 +12,8 @@ export class LogosComponent implements OnInit
 
     @Input() mSubTitle: string;
     @Input() mTitle: string;
+
+    mconfig : mConfig;
 
     constructor ()
     {
